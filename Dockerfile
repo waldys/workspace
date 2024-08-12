@@ -6,11 +6,11 @@ WORKDIR /app
 
 # Copiar los archivos necesarios
 COPY ./miapp.py /app
-COPY ./requirerements.txt /app
+COPY ./requirements.txt /app
 
 # Instalar las dependencias
 RUN pip install --no-cache-dir --upgrade pip
-RUN pip install -r requirerements.txt
+RUN pip install -r requirements.txt
 
 # Exponer el puerto en el que correrá la aplicación
 EXPOSE 8000
