@@ -1,0 +1,31 @@
+services:
+  web:
+    build: .
+    # command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    links:
+      - redis
+    env_file:
+      - .env
+
+  redis:
+    image: redis:latest
+    command: redis-server --appendonly yes
+    #volumes:
+      #- ./redis-data:/data
+    #ports:
+    #  - "6379:6379"
+    links:
+      - redis-commander
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      REDIS_HOSTS: ${REDIS_HOST}
+      REDIS_HOST:  ${REDIS_HOST}
+      REDIS_PORT:  ${REDIS_PORT}
+    ports:
+      - 8081:8081
+    env_file:
+      - .env
