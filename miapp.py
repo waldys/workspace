@@ -8,7 +8,7 @@ load_dotenv()
 
 app = FastAPI()
 
-#redis_client = Redis(host='reedis', port=6379, db=0)
+#redis_client = Redis(host='reeedis', port=6379, db=0)
 
 redis_client = Redis(
     host=os.getenv('REDIS_HOST', 'localhost'),
